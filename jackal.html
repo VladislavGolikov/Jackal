@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Jackal</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="jackal.css">
+  <link rel="icon" type='image/icon' href="favicon.png">
+</head>
+<body>
+<script defer="defer" src="jackal-some-functions.js"></script>
+<script defer="defer" src="jackal-description.js"></script>
+<script defer="defer" src="jackal.js"></script>
+
+<script defer="defer" src="jackal-engineering.js"></script>
+
+  <div class="allgrid">
+
+
+    <h1>Jackal</h1>
+
+    <div class="playing-field"></div>
+    <button class="button generalAction">нет действия</button>
+    <button class="button goldTake">золото взять</button>
+    <button class="button golgDrop">золото бросить</button>
+    <button class="button drink">выпить ром</button>
+
+    <button class="toggle-game"><span>классический</span> - <span class="notorder">ос</span></button>
+    <button class="toggle-water">смена моря</button>
+
+    <div class="statusstring"><span class="drivetext"><!-- место для строки статуса --></span><span class="drivesymbol"> ◆</span></div>
+
+
+    <div class="for-engineering hidd"><!-- место для инжиниринга --></div>
+  </div>
+
+  <svg>
+    <filter id="myfilter">
+      <feColorMatrix type="matrix"
+        values="
+            0 0 0 0 0
+            0 1 0 0 0.4
+            0 0 0 0 0
+            0 0 0 1 0"/>
+    </filter>
+    <filter id="myfilter2">
+      <feColorMatrix type="matrix"
+        values="
+            1 0 0 0 0.5
+            0 1 0 0 0
+            0 0 0 0 0
+            0 0 0 1 0"/>
+    </filter>
+  </svg>
+
+
+<div class="proba hidd"><!-- проба корабля --></div>
+
+</body>
+</html>
+

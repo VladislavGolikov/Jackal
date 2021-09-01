@@ -1,0 +1,355 @@
+* {
+    padding: 0;
+    margin: 0;
+ /*   overflow: hidden;*/
+    user-select: none;
+}
+
+body {
+/*    overflow: hidden;*/
+}
+
+.allgrid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg, yellow, green);
+}
+
+h1 {
+    position: absolute;
+    font-family: sans-serif;
+    font-size: 7vh;
+    text-align: right;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 5px -5px 0.5vh black;
+    outline: 1px red dashed;
+}
+
+.toggle-game , .toggle-water {
+    position: absolute;
+    top: 7vh;
+    left: 86vw;
+    height: 4vh;
+    padding: 0 1vh;
+    background: linear-gradient(120deg, green, #aaaaaa, red);
+    border-radius: 1vh;
+    color: yellow;
+    font-weight: bold;
+    font-size: 1.8vh;
+    box-shadow: 5px -5px 5px black;
+    z-index: 50;
+}
+.toggle-game-on {
+    background: linear-gradient(120deg, red, #aaaaaa, green);
+}
+.toggle-water {
+    top: 12vh;
+    background: linear-gradient(120deg, blue, #aaaaaa, red);
+}
+.playing-field {
+    position: absolute;
+    left: 20vw;
+    top: 2vh;
+    width: 96vh;
+    height: 96vh;
+    background: linear-gradient(180deg,  #00ffff, #008dda);
+    border-radius: 1vh;
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(13, 1fr);
+    grid-gap: 1px;
+
+}
+.for-engineering {
+    position: absolute;
+    left: 2vw;
+    top: 12vh;
+    width: 30vh;
+    height: 5vh;
+    background: linear-gradient(180deg,  black, gray);
+    border-radius: 1vh;
+    color: green;
+    font-size: 3vh;
+
+}
+
+.unit-field {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: blue;
+}
+.unit-field:hover {
+    filter: url(#myfilter2);
+}
+.hidd {
+    display: none;
+}
+
+
+@keyframes blink {
+    from {filter: url(#myfilter)/*;transform: scale(2);z-index:100;*/}
+    to {filter: none/*;transform: scale(1)*/}
+}
+.blinked {
+    animation-name: blink;
+    animation-duration: 1000ms;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+/*------------------ строка состояния -------------------------------*/
+
+.statusstring {
+/*    grid-column: log-left / log-right;
+    grid-row: log-top / log-bottom;*/
+    position: absolute;
+    left: 70vw;
+    top: 80vh;
+    width: 25vw;
+    height: 8vh;
+    align-self: center;
+    overflow: hidden;
+    border-radius: 1vh;
+    box-sizing: border-box;
+    background-color: #121212;
+    color: #36ff00;
+    padding: 0 1.5vw;
+    line-height: 4vh;
+    font-size: 2vh;
+    font-family: monospace;
+}
+
+@keyframes cursorblind {
+    from {}
+    50% {color: yellow}
+}
+.drivesymbol {
+    animation-name: cursorblind;
+    animation-duration: 500ms;
+    animation-timing-function: steps(2);
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+/*------------------ строка состояния -------------------------------*/
+@keyframes shipStand {
+    from {transform: rotate3d(0.2,0,0.3,-20deg)}
+    50% {transform: rotate3d(0.2,0,0.3,20deg)}
+    100% {transform: rotate3d(0.2,0,0.3,-20deg)}
+}
+.ship {
+    animation-name: shipStand;
+    animation-duration: 5000ms;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: yellow;
+    z-index: 5;
+}/*
+@keyframes piratesStand {
+    from {transform: rotate3d(0.2,0,0.3,-15deg)}
+    50% {transform: rotate3d(0.2,0,0.3,15deg)}
+    100% {transform: rotate3d(0.2,0,0.3,-15deg)}
+}*/
+@keyframes piratesStand {
+    from {transform: rotate3d(0,1,0,0deg)}
+    100% {transform: rotate3d(0,1,0,360deg)}
+}
+
+.pirate {
+    animation-name: piratesStand;
+    animation-duration: 4000ms;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 15;
+    outline: 1px blue dashed;
+}
+.order1 {
+    position: relative;
+    left: 2vh;
+}
+.order2 {
+    position: relative;
+    left: -2vh;
+}
+.order3 {
+    position: relative;
+    top: 0.2vh;
+}
+/*--------------- КНОПКИ -------------------------------------------*/
+.button {
+    position: absolute;
+    left: 80vw;
+    top: 30vh;
+    width: 5vw;
+    height: 10vh;
+    color: red;
+    font-size: 5vh;
+    border-radius: 3vh;
+    border: none;
+    background-image: url(sprites/button/nothing.png) , linear-gradient(180deg, yellow, #008dda);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: 5px -5px 5px black;
+    backface-visibility: hidden;
+}
+@keyframes roton {
+    from {transform: rotate3d(0,1,0,0deg);}
+    100% {transform: rotate3d(0,1,0,90deg);}
+}
+@keyframes rotoff {
+    from {transform: rotate3d(0,1,0,-90deg);}
+    100% {transform: rotate3d(0,1,0,0deg);}
+}
+
+.roton {
+    animation-name: roton;
+}
+.rotoff {
+    animation-name: rotoff;
+}
+
+.generalAction {
+    animation-duration: 1000ms;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+
+    left: 70vw;
+    top: 20vh;
+    width: 30vh;
+    height: 30vh;
+    border-radius: 12vh;
+}
+.dib {
+
+}
+.goldTake {
+    top: 50vh;
+    background-image: linear-gradient(180deg, gray, yellow);
+    color: gray;
+}
+.golgDrop {
+    top: 50vh;
+    left: 87vw;
+    background-image: linear-gradient(180deg, gray, yellow);
+    color: gray;
+}
+.goldOrder {
+    background-image: linear-gradient(180deg, green, green);
+    color: red;
+
+}
+.drink {
+    top: 62vh;
+    background-image: url(sprites/button/drink.png) , linear-gradient(180deg, yellow, #008dda);
+}
+/*--------------- КНОПКИ -------------------------------------------*/
+
+
+.withgoldpirate {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 30%;
+    background-image: url(sprites/columbia.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.gold-on-field {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    bottom: 1px;
+    right: 1px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    color: #002492;
+    line-height: 3vh;
+    font-size: 2vh;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+@keyframes retentionBlinkStop {
+    from {color: black}
+    60% {color: red}
+}
+@keyframes retentionBlinkGo {
+    from {color: black}
+    40% {color: #65ff00}
+}
+.retention {
+    animation-name: retentionBlinkStop;
+    animation-duration: 800ms;
+    animation-timing-function: steps(1);
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    position: absolute;
+    width: 25%;
+    top: 1px;
+    right: 1px;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    color: red;
+    line-height: 2.5vh;
+    font-size: 2.5vh;
+    font-weight: bold;
+    text-align: center;
+}
+.retentionGo {
+    animation-name: retentionBlinkGo;
+}
+.proba {
+    position: absolute;
+    top: 25vh;
+    left:50vw;
+    width: 50vh;
+    height: 50vh;
+    z-index: 50;
+    background-image: url(sprites/ship.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
